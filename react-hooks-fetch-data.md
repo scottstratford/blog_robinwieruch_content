@@ -23,7 +23,7 @@ In this tutorial, I want to show you **how to fetch data in React with Hooks** b
 
 If you don't know anything about this new React feature, checkout this [introduction to React Hooks](https://www.robinwieruch.de/react-hooks/). If you want to checkout the finished project for the showcased examples that show how to fetch data in React with Hooks, checkout this {{% a_blank "GitHub repository" "https://github.com/the-road-to-learn-react/react-hooks-introduction" %}}.
 
-**Note:** In the future, React Hooks are not be intended for data fetching in React. Instead, a feature called Suspense will be in charge for it. The following walkthrough is nonetheless a great way to learn more about state and effect hooks in React.
+**Note:** In the future, React Hooks are not be intended for data fetching in React. Instead, a feature called Suspense will be in charge of it. The following walkthrough is nonetheless a great way to learn more about state and effect hooks in React.
 
 {{% chapter_header "Data Fetching with React Hooks" "react-fetching-data-with-hooks" %}}
 
@@ -152,7 +152,7 @@ function App() {
 export default App;
 {{< /highlight >}}
 
-That's data fetching with React hooks in a nutshell. But continue reading if you are interested about error handling, loading indicators, how to trigger the data fetching from a form, and how to implment a reusable data fetching hook.
+That's data fetching with React hooks in a nutshell. But continue reading if you are interested in error handling, loading indicators, how to trigger the data fetching from a form, and how to implment a reusable data fetching hook.
 
 {{% chapter_header "How to trigger a hook programmatically/manually?" "react-hooks-programmatically" %}}
 
@@ -199,7 +199,7 @@ function App() {
 export default App;
 {{< /highlight >}}
 
-At the moment, both states are independent from each other, but now you want to couple them to only fetch articles that are specified by the query in the input field. With the following change, the component should fetch all articles by query term once it mounted.
+At the moment, both states are independent of each other, but now you want to couple them to only fetch articles that are specified by the query in the input field. With the following change, the component should fetch all articles by query term once it mounted.
 
 {{< highlight javascript "hl_lines=10" >}}
 ...
@@ -228,7 +228,7 @@ function App() {
 export default App;
 {{< /highlight >}}
 
-One piece is missing: When you try to type something into the input field, there is no other data fetching after the mounting triggered from the effect. That's because you have provided the empty array as second argument to the effect. The effect depends on no variables, so it is only triggered when the component mounts. However, now the effect should depend on the query. Once the query changes, the data request should fire again.
+One piece is missing: When you try to type something into the input field, there is no other data fetching after the mounting triggered from the effect. That's because you have provided an empty array as a second argument to the effect. The effect is not dependent on any variable, so it is only triggered when the component mounts. However, now the effect should depend on the query. Once the query changes, the data request should fire again.
 
 {{< highlight javascript "hl_lines=17" >}}
 ...
@@ -300,7 +300,7 @@ function App() {
 }
 {{< /highlight >}}
 
-Now, make the effect dependant on the search state rather than the fluctuant query state that changes with every key stroke in the input field. Once the user clicks the button, the new search state is set and should trigger the effect hook kinda manually.
+Now, make the effect dependant on the search state rather than the fluctuating query state that changes with every key stroke in the input field. Once the user clicks the button, the new search state is set and should trigger the effect hook kinda manually.
 
 {{< highlight javascript "hl_lines=6 11 18" >}}
 ...
@@ -378,11 +378,11 @@ function App() {
 }
 {{< /highlight >}}
 
-That's if for the implicit programmatic data fetching with the effect hook. You can decide on which state the effect depends. Once you set this state on a click or in another side-effect, this effect will run again. In this case, if the URL state changes, the effect runs again to fetch stories from the API.
+That's it for the implicit programmatic data fetching with the effect hook. You can decide on which state the effect depends. Once you set this state on a click or in another side-effect, this effect will run again. In this case, if the URL state changes, the effect runs again to fetch stories from the API.
 
 {{% chapter_header "Loading Indicator with React Hooks" "react-hooks-error-handling" %}}
 
-Let's introduce a loading indicator to the data fetching. It's just another state that is manage by a state hook. The loading flag is used to render a loading indicator in the App component.
+Let's introduce a loading indicator to the data fetching. It's just another state that is managed by a state hook. The loading flag is used to render a loading indicator in the App component.
 
 {{< highlight javascript "hl_lines=10 14 19 41 42 43 51" >}}
 import React, { Fragment, useState, useEffect } from 'react';
@@ -521,7 +521,7 @@ The error state is reset every time the hook runs again. That's useful because a
 
 {{% chapter_header "Fetching Data with Forms and React" "react-hooks-forms-data-fetching" %}}
 
-What about a proper form to fetch data? So far, we have only a combination of input field and button. Once you introduce more input elements, you may want to wrap them with a form element. In addition, a form makes it possible to trigger the button with "Enter" on the keyboard too.
+What about a proper form to fetch data? So far, we have only used a combination of an input field and a button. Once you introduce more input elements, you may want to wrap them with a form element. In addition, a form makes it possible to trigger the button with "Enter" on the keyboard too.
 
 {{< highlight javascript "hl_lines=6 7 8 9 10 16 17" >}}
 function App() {
@@ -770,7 +770,7 @@ function App() {
 export default App;
 {{< /highlight >}}
 
-That's it for the data fetching with a custom hook. The hook itself doesn't know anything about the API. It receives all parameters from the outside and only manages necessary states such as the data, loading and error state. It executes the request and returns the data to the component using it as custom data fetching hook.
+That's it for the data fetching with a custom hook. The hook itself doesn't know anything about the API. It receives all of its parameters from the outside and only manages necessary states such as the data, loading and error state. It executes the request and returns the data to the component using it as custom data fetching hook.
 
 {{% chapter_header "Reducer Hook for Data Fetching" "react-hooks-reducer-hook" %}}
 
@@ -840,7 +840,7 @@ const useDataApi = (initialUrl, initialData) => {
 };
 {{< /highlight >}}
 
-Now, when fetching data, the dispatch function can be used to send information to the reducer function. The object being send with the dispatch function has a mandatory `type` property and an optional `payload` property. The type tells the reducer function which state transition needs to be applied and the payload can additionally be used by the reducer to distill the new state. After all, we only have three state transitions: initializing the fetching process, notifying about a successful data fetching result, and notifying about an errornous data fetching result.
+Now, when fetching data, the dispatch function can be used to send information to the reducer function. The object being send with the dispatch function has a mandatory `type` property and an optional `payload` property. The type tells the reducer function which state transition needs to be applied and the payload can additionally be used by the reducer to distill the new state. After all, we only have three state transitions: initializing the fetching process, notifying of a successful data fetching result, and notifying of an errornous data fetching result.
 
 In the end of the custom hook, the state is returned as before, but because we have a state object and not the standalone states anymore, the state object is returned as destrcutured object. This way, the one who calls the `useDataApi` custom hook still gets access to `data`, `isLoading` and `isError`:
 
@@ -881,7 +881,7 @@ const dataFetchReducer = (state, action) => {
 };
 {{< /highlight >}}
 
-A reducer function has access to the current state and the incoming action via its arguments. So far, in out switch case statement each state transition only returns the previous state. A destructuring statement is used to keep the state object immutable -- meaning the state is never directly mutated -- to enforce best practices. Now let's override a few of the current's state returned properties to alter the state with each state transition:
+A reducer function has access to the current state and the incoming action via its arguments. So far, in out switch case statement each state transition only returns the previous state. A destructuring statement is used to keep the state object immutable -- meaning the state is never directly mutated -- to enforce best practices. Now let's override a few of the returned current state properties by altering the state with each state transition:
 
 {{< highlight javascript "hl_lines=6 7 12 13 14 19 20" >}}
 const dataFetchReducer = (state, action) => {
